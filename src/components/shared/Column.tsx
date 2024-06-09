@@ -6,6 +6,7 @@ import { Column as ColumnType, Task as TaskType } from '../../types';
 import Task from './Task';
 import { Button } from '../ui/button';
 import DialogTask from './DialogTask';
+import { useRouter } from 'next/navigation';
 
 interface ColumnProps {
   column: ColumnType;
@@ -15,13 +16,19 @@ interface ColumnProps {
 
 const Column: React.FC<ColumnProps> = ({ column, tasks, boardId }) => {
 
+  const router = useRouter();
 
   const [enabled, setEnabled] = useState(false);
   
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+
   const handleDialogOpenChange = (isOpen: boolean) => {
     setIsDialogOpen(isOpen);
+    if (isOpen === false) {
+      window.location.reload();
+    }
+    
   };
 
   // React 18 in StrictMode was to render the Droppable elements after an animation frame

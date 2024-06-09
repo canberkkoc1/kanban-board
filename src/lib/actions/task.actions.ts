@@ -75,3 +75,21 @@ export async function updateTask(taskId: string, task: CreateTaskParams) {
     }
 
 }
+
+
+export async function deleteTask(taskId: string) {
+    try {
+        await connectToDatabase()
+
+        const task = await Task.findByIdAndDelete(taskId)
+
+        if (!task) {
+            throw new Error("Task not found")
+        }
+
+        return JSON.parse(JSON.stringify(task))
+    }
+    catch (error) {
+        handleError(error)
+    }
+}
