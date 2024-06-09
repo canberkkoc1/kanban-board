@@ -1,9 +1,11 @@
 // types.ts
 export interface Task {
-    id: string;
+    id: string ;
     title: string;
     description: string;
     columnId: string;
+    color: string;
+    boardId: string;
   }
 
  
@@ -46,6 +48,7 @@ export interface Task {
     description: string;
     boardId: string;
     columnId: string;
+    color: string;
   }
  
 

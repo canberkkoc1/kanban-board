@@ -3,6 +3,13 @@ export const boardDefaultValues = {
     description: '',
   }
 
+export const taskDefaultValues = {
+    title: '',
+    description: '',
+    boardId: '',
+    columnId: '',
+  }
+
 
   export const columsDefaultValues = {
     'column-1': {

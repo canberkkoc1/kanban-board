@@ -9,17 +9,16 @@ import { updateTaskColumn } from '@/lib/actions/task.actions';
 
 type BoardProps = {
   boardTask: TaskType;
+  boardId: string;
 };
 
 
 const Board =  (
-  { boardTask }: BoardProps
+  { boardTask, boardId }: BoardProps
   ) => {
-
-    
     const initialData: BoardData = {
       tasks: Array.isArray(boardTask) ? boardTask.reduce((acc, task) => {
-        acc[task._id] = { id: task._id, title: task.title, description: task.description, columnId: task.columnId};
+        acc[task._id] = { id: task._id, title: task.title, description: task.description, columnId: task.columnId, color: task.color, boardId: task.boardId};
         return acc;
       }, {}) : {},
       columns: {
@@ -41,7 +40,7 @@ const Board =  (
         'column-4': {
           id: 'column-4',
           title: 'Designed',
-          taskIds: Array.isArray(boardTask) ? boardTask.filter(task => task.columnId === 'column-3').map(task => task._id) : [],
+          taskIds: Array.isArray(boardTask) ? boardTask.filter(task => task.columnId === 'column-4').map(task => task._id) : [],
         },
       },
       columnOrder: ['column-1', 'column-2', 'column-3', 'column-4'],
@@ -49,6 +48,7 @@ const Board =  (
 
     
   const [state, setState] = useState<BoardData>(initialData);
+
 
   const onDragEnd = async (result: DropResult) => {
     const { destination, source, draggableId } = result;
@@ -117,13 +117,11 @@ const Board =  (
 
     // update task columnId
 
-    const updatedTask = await updateTaskColumn(draggableId, destination.droppableId)
+    await updateTaskColumn(draggableId, destination.droppableId)
 
-    console.log(updatedTask);
 
   };
 
-  console.log(state);
 
   return (
       <DragDropContext onDragEnd={onDragEnd}>
@@ -132,7 +130,7 @@ const Board =  (
           const column = state.columns[columnId];
           const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
 
-          return <Column key={column.id} column={column} tasks={tasks} />;
+          return <Column key={column.id} column={column} tasks={tasks} boardId={boardId} />;
         })}
       </div>
     </DragDropContext>

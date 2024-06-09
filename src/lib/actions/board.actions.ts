@@ -20,3 +20,15 @@ export async function createBoard(boards: CreateBoardParams) {
         handleError(error)
       }
 }
+
+export async function getAllBoards() {
+    try {
+        await connectToDatabase()
+    
+        const boards = await Board.find()
+    
+        return JSON.parse(JSON.stringify(boards))
+      } catch (error) {
+        handleError(error)
+      }
+}

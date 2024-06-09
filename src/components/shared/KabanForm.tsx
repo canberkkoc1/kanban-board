@@ -54,23 +54,11 @@ const KabanForm = (
         if(type === "Create") {
             // create new board
 
-            const newBoard = await createBoard(boardData)
-
-            // create task
-
-            await createTask({
-                title: "To Do",
-                description: "This is the first task",
-                boardId: newBoard._id,
-                columnId: "column-1"
-            })
-             
+            const newBoard = await createBoard(boardData)             
 
             if(newBoard) {
                 router.push(`/kanban/${newBoard._id}`)
             }
-
-
         }
 
        /*  if(type === "Update"){
@@ -99,15 +87,15 @@ const KabanForm = (
 
   return (
     <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-      <div className="flex flex-col gap-5 md:flex-row">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 items-center w-1/3 h-1/2">
+      <div className="flex flex-col gap-5 w-full">
         <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <Input placeholder="Board title" {...field} className="input-field" />
+                <Input placeholder="Board title" {...field} className="w-full text-black bg-grey-50 h-[54px]  placeholder:text-grey-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent !important" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -119,7 +107,7 @@ const KabanForm = (
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <Textarea placeholder="Description" {...field} className="textarea rounded-2xl" />
+                <Textarea placeholder="Description" {...field} className="bg-grey-50 text-black flex flex-1 placeholder:text-grey-500 p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent !important; rounded-2xl" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -134,7 +122,7 @@ const KabanForm = (
         type="submit"
         size="lg"
         disabled={form.formState.isSubmitting}
-        className="button col-span-2 w-full"
+        className="w-full text-black bg-white hover:bg-violet-300 border border-gray-200"
       >
         {form.formState.isSubmitting ? (
           'Submitting...'

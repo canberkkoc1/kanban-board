@@ -29,8 +29,19 @@ const TaskSchema = new Schema({
         type:String,
         required:true
     },
-    createdAt: Date,
-    updatedAt: Date
+    color: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    
+    }
 });
 
 
