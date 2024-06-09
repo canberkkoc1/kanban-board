@@ -79,7 +79,7 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ## Contact
 
-If you have any questions or suggestions about this project, please contact me at [email@example.com](mailto:email@example.com).
+If you have any questions or suggestions about this project, please contact me at [canberkkoc.dv@gmail.com](mailto:email@example.com).
 
 ---
 
