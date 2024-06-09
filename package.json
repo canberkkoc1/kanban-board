@@ -20,7 +20,6 @@
     "next": "14.2.3",
     "react": "^18",
     "react-beautiful-dnd": "^13.1.1",
-    "react-color": "^2.19.3",
     "react-color-palette": "^7.1.1",
     "react-dom": "^18",
     "react-hook-form": "^7.51.5",
